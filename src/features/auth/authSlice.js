@@ -15,7 +15,15 @@ export const login = createAsyncThunk("auth/login", async (userData) => {
     const response = await request.data;
     return response;
   } catch (error) {
-    console.log(error);
+    return error.message;
+  }
+});
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+    localStorage.clear();
+  } catch (error) {
+    return error;
   }
 });
 
@@ -42,11 +50,20 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.user = null;
-        if (action.error.message === "Request failed with status code 401") {
-          state.error = "Access denied | Invalid credentials";
-        } else {
-          state.error = action.error.message;
-        }
+        state.error = action.error.message;
+      })
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.user = undefined;
+        state.error = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
