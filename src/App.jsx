@@ -10,15 +10,14 @@ import Login from "./views/Login";
 import ScreensList from "./views/ScreensList";
 import { connect } from "react-redux";
 import CreateScreen from "./views/CreateScreen";
+import Detail from "./views/Detail";
 
 function App({ auth }) {
-  console.log(auth);
   const PrivateRoute = ({ children }) => {
     if (auth == undefined) {
       return <Navigate to={"/login"} />;
     } else {
       if (auth.token != null && auth.token != undefined) {
-        console.log(auth.token);
         return <>{children}</>;
       } else {
         return <Navigate to={"/login"} />;
@@ -30,8 +29,6 @@ function App({ auth }) {
     <div className="wrapper">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route
             path="/screens"
             element={
@@ -48,6 +45,16 @@ function App({ auth }) {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/screen/:id"
+            element={
+              <PrivateRoute>
+                <Detail />
+              </PrivateRoute>
+            }
+          />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Login />}></Route>
         </Routes>
       </Router>

@@ -1,19 +1,43 @@
-import React from "react";
-import { Button, Form, Input, Radio } from "antd";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { create } from "../features/screens/screenSlice";
+import { deleteScreen, getById } from "../features/screens/screenSlice";
+import { Button, Form, Input, Radio, Popconfirm, message } from "antd";
+import { update } from "../features/screens/screenSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router";
 
-export default function CreateScreen() {
+export default function Detail() {
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const [createForm] = Form.useForm();
+  const [screen, setScreen] = useState({});
+  const [editable, setEditable] = useState(false);
+  const [updateForm] = Form.useForm();
   const token = useSelector(selectUser);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(getById({ id: id, token: token })).then((result) => {
+      updateForm.setFieldsValue({
+        name: result.payload.name,
+        description: result.payload.description,
+        price_per_day: result.payload.price_per_day,
+        resolution_height: result.payload.resolution_height,
+        resolution_width: result.payload.resolution_width,
+        type: result.payload.type,
+      });
+      setScreen(result.payload);
+    });
+  }, []);
+
   const onFinish = (values) => {
-    dispatch(create({ data: values, token: token })).then((result) => {
+    console.log("updatedScreen", values);
+    const updatedScreen = {
+      id: id,
+      body: values,
+    };
+    dispatch(update({ id: id, data: values, token: token })).then((result) => {
       console.log(result);
       navigate("/screens");
     });
@@ -22,25 +46,60 @@ export default function CreateScreen() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  const confirmDelete = (e) => {
+    dispatch(deleteScreen({ id: id, token: token })).then((result) => {
+      message.success("Deleted", result);
+      navigate("/screens");
+    });
+  };
+  const cancel = (e) => {
+    console.log(e);
+  };
+
   return (
-    <>
+    <div>
+      <Button
+        type="primary"
+        size="large"
+        onClick={() => setEditable(!editable)}
+      >
+        Edit Screen
+      </Button>
+      <Popconfirm
+        title={`Delete ${screen.name}`}
+        description="Are you sure to delete this screen?"
+        onConfirm={confirmDelete}
+        onCancel={cancel}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Button danger>Delete</Button>
+      </Popconfirm>
       <Form
-        form={createForm}
-        name="create"
+        form={updateForm}
+        name="update"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
+        initialValues={{
+          name: screen.name,
+          description: screen.description,
+          price_per_day: screen.price_per_day,
+          resolution_height: screen.resolution_height,
+          resolution_width: screen.resolution_width,
+          type: screen.type,
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        disabled={!editable}
       >
         <Form.Item
           label="Name"
           name="name"
           rules={[
             {
-              required: true,
               message: "Insert name",
               type: "text",
             },
@@ -66,7 +125,6 @@ export default function CreateScreen() {
           name="price_per_day"
           rules={[
             {
-              required: true,
               message: "Insert price",
             },
           ]}
@@ -79,7 +137,6 @@ export default function CreateScreen() {
           name="resolution_height"
           rules={[
             {
-              required: true,
               message: "Insert heigh",
             },
           ]}
@@ -92,7 +149,6 @@ export default function CreateScreen() {
           name="resolution_width"
           rules={[
             {
-              required: true,
               message: "Insert width",
             },
           ]}
@@ -108,10 +164,10 @@ export default function CreateScreen() {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Save
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
   );
 }
