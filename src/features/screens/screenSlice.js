@@ -18,10 +18,9 @@ export const getAll = createAsyncThunk(
         }
       );
       const response = await request.data;
-      console.log("RESP del get", response);
       return response;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 );
@@ -41,10 +40,9 @@ export const create = createAsyncThunk(
         }
       );
       const response = await request.data;
-      console.log("RESP del CREATE", response);
       return response;
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -64,10 +62,9 @@ export const getById = createAsyncThunk(
         }
       );
       const response = await request.data;
-      console.log("RESP del get", response);
       return response;
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -89,7 +86,7 @@ export const update = createAsyncThunk(
       const response = await request.data;
       return response;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 );
@@ -97,7 +94,6 @@ export const update = createAsyncThunk(
 export const deleteScreen = createAsyncThunk(
   "screens/delete",
   async ({ id, token }) => {
-    console.log(id, token);
     try {
       const request = await axios.delete(
         `https://challenge-front-7fw1.onrender.com/display/${id}`,
@@ -112,7 +108,7 @@ export const deleteScreen = createAsyncThunk(
       const response = await request.data;
       return response;
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
