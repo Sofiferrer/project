@@ -6,6 +6,7 @@ export default function Home() {
     <div>
       Home
       <Link to="/login">Login</Link>
+      <Link to="/screens">Go to screens</Link>
     </div>
   );
 }
