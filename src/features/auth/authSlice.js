@@ -13,7 +13,6 @@ export const login = createAsyncThunk("auth/login", async (userData) => {
       }
     );
     const response = await request.data;
-    localStorage.setItem("token", response.token);
     return response;
   } catch (error) {
     console.log(error);
@@ -52,4 +51,5 @@ export const authSlice = createSlice({
   },
 });
 
+export const selectUser = (state) => state.auth.user.token;
 export default authSlice.reducer;
