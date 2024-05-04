@@ -1,12 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/auth/authSlice";
 
 export default function Home() {
+  const token = useSelector(selectUser);
+
   return (
-    <div>
-      Home
-      <Link to="/login">Login</Link>
-      <Link to="/screens">Go to screens</Link>
-    </div>
+    <>
+      <h1>Welcome to LatinAD</h1>
+      <h3>Screens</h3>
+
+      {token ? (
+        <Link to="/screens">Go to screens</Link>
+      ) : (
+        <Link to="/login">Login to continue</Link>
+      )}
+    </>
   );
 }
