@@ -5,12 +5,15 @@ import { getAll } from "../features/screens/screenSlice";
 import { Button } from "antd";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
+import Loader from "../components/Loader/Loader";
+import Navbar from "../components/Navbar/Navbar";
 
 export default function ScreensList() {
   const [screens, setScreens] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector(selectUser);
+  const { loading } = useSelector((state) => state.screens);
 
   const data = {
     pageSize: "10",
@@ -31,19 +34,24 @@ export default function ScreensList() {
   };
 
   return (
-    <div>
+    <>
+      <Navbar />
       <Button type="primary" size="large" onClick={goToAdd}>
         Add Screen
       </Button>
-      <ul>
-        {screens?.map((screen) => {
-          return (
-            <li key={screen.id}>
-              <Link to={`/screen/${screen.id}`}>{screen.name}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <ul>
+          {screens?.map((screen) => {
+            return (
+              <li key={screen.id}>
+                <Link to={`/screen/${screen.id}`}>{screen.name}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </>
   );
 }

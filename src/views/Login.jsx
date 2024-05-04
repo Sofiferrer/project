@@ -1,27 +1,40 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
-import { useDispatch } from "react-redux";
+import { Button, Form, Input, notification } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const [api, contextHolder] = notification.useNotification();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginForm] = Form.useForm();
+  const { loading } = useSelector((state) => state.auth);
+
+  const openNotification = (message) => {
+    api.info({
+      message: `${message}`,
+      placement: "top",
+      duration: 2.5,
+      className: "error-notification",
+    });
+  };
+
   const onFinish = (values) => {
     dispatch(login(values)).then((result) => {
-      if (result.payload) {
+      if (result.payload.token) {
         loginForm.resetFields();
         navigate("/screens");
+      } else {
+        loginForm.resetFields();
+        openNotification("Invalid credentials, try again");
       }
     });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <>
+      {contextHolder}
       <Form
         form={loginForm}
         name="basic"
@@ -30,7 +43,6 @@ export default function Login() {
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -63,7 +75,7 @@ export default function Login() {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Submit
           </Button>
         </Form.Item>
