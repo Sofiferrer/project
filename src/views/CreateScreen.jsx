@@ -4,17 +4,20 @@ import { useDispatch } from "react-redux";
 import { create } from "../features/screens/screenSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
+import { useNavigate } from "react-router";
 
 export default function CreateScreen() {
   const dispatch = useDispatch();
   const [createForm] = Form.useForm();
   const token = useSelector(selectUser);
   const { loading } = useSelector((state) => state.screens);
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
-    dispatch(create({ data: values, token: token })).then((result) =>
-      console.log(result)
-    );
+    dispatch(create({ data: values, token: token })).then((result) => {
+      console.log(result);
+      navigate("/screens");
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
