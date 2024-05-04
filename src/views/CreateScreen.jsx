@@ -1,10 +1,11 @@
-import React from "react";
-import { Button, Form, Input, Radio } from "antd";
+import React, { useEffect } from "react";
+import { Button, Form, Input, InputNumber, message, Radio } from "antd";
 import { useDispatch } from "react-redux";
 import { create } from "../features/screens/screenSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function CreateScreen() {
   const dispatch = useDispatch();
@@ -15,14 +16,17 @@ export default function CreateScreen() {
 
   const onFinish = (values) => {
     dispatch(create({ data: values, token: token })).then((result) => {
-      console.log(result);
-      navigate("/screens");
+      if (typeof result.payload == "string") {
+        console.log(result);
+        message.error("Data is missing", 1);
+      } else {
+        console.log(result);
+        message.success("Created", 1);
+        navigate("/screens");
+      }
     });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <>
       <Form
@@ -33,7 +37,6 @@ export default function CreateScreen() {
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -43,7 +46,6 @@ export default function CreateScreen() {
             {
               required: true,
               message: "Insert name",
-              type: "text",
             },
           ]}
         >
@@ -55,7 +57,9 @@ export default function CreateScreen() {
           name="description"
           rules={[
             {
+              required: true,
               max: 50,
+              message: "Add a short description",
             },
           ]}
         >
@@ -72,7 +76,7 @@ export default function CreateScreen() {
             },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
 
         <Form.Item
@@ -85,7 +89,7 @@ export default function CreateScreen() {
             },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
 
         <Form.Item
@@ -98,9 +102,18 @@ export default function CreateScreen() {
             },
           ]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
-        <Form.Item label="Price x day" name="type">
+        <Form.Item
+          label="Type"
+          name="type"
+          rules={[
+            {
+              required: true,
+              message: "Choose a type",
+            },
+          ]}
+        >
           <Radio.Group>
             <Radio value="indoor"> Indoor </Radio>
             <Radio value="outdoor"> Outdoor </Radio>
@@ -112,6 +125,7 @@ export default function CreateScreen() {
             Submit
           </Button>
         </Form.Item>
+        <Link to="/screens">Back to list</Link>
       </Form>
     </>
   );

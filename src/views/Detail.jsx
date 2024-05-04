@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteScreen, getById } from "../features/screens/screenSlice";
 import { Button, Form, Input, Radio, Popconfirm, message } from "antd";
@@ -32,29 +32,25 @@ export default function Detail() {
   }, []);
 
   const onFinish = (values) => {
-    console.log("updatedScreen", values);
-    const updatedScreen = {
-      id: id,
-      body: values,
-    };
     dispatch(update({ id: id, data: values, token: token })).then((result) => {
-      console.log(result);
-      navigate("/screens");
+      if (typeof result.payload == "string") {
+        message.error("Something went wrong, try again", 1);
+      } else {
+        message.success("Updated", 1);
+        navigate("/screens");
+      }
     });
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   const confirmDelete = (e) => {
     dispatch(deleteScreen({ id: id, token: token })).then((result) => {
-      message.success("Deleted", result);
-      navigate("/screens");
+      if (typeof result.payload == "string") {
+        message.error("Something went wrong, try again", 1);
+      } else {
+        message.success("Deleted", 1);
+        navigate("/screens");
+      }
     });
-  };
-  const cancel = (e) => {
-    console.log(e);
   };
 
   return (
@@ -68,14 +64,15 @@ export default function Detail() {
       </Button>
       <Popconfirm
         title={`Delete ${screen.name}`}
-        description="Are you sure to delete this screen?"
+        description={`Are you sure to delete this screen?`}
         onConfirm={confirmDelete}
-        onCancel={cancel}
         okText="Yes"
         cancelText="No"
       >
         <Button danger>Delete</Button>
       </Popconfirm>
+      <Link to="/screens">Back to list</Link>
+
       <Form
         form={updateForm}
         name="update"
@@ -91,7 +88,6 @@ export default function Detail() {
           type: screen.type,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
         disabled={!editable}
       >

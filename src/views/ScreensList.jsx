@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAll } from "../features/screens/screenSlice";
-import { logout } from "../features/auth/authSlice";
 import { Button } from "antd";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import Loader from "../components/Loader/Loader";
+import Navbar from "../components/Navbar/Navbar";
 
 export default function ScreensList() {
   const [screens, setScreens] = useState([]);
@@ -33,12 +33,9 @@ export default function ScreensList() {
     navigate("/create");
   };
 
-  const logOut = () => {
-    dispatch(logout()).then((result) => console.log("logout", result));
-  };
-
   return (
-    <div>
+    <>
+      <Navbar />
       <Button type="primary" size="large" onClick={goToAdd}>
         Add Screen
       </Button>
@@ -55,10 +52,6 @@ export default function ScreensList() {
           })}
         </ul>
       )}
-
-      <Button type="primary" size="large" onClick={logOut}>
-        Logout
-      </Button>
-    </div>
+    </>
   );
 }

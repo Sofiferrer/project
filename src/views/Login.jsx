@@ -3,7 +3,6 @@ import { Button, Form, Input, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
 
 export default function Login() {
   const [api, contextHolder] = notification.useNotification();
@@ -33,9 +32,6 @@ export default function Login() {
     });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    //openNotification("Something went wrong, try again");
-  };
   return (
     <>
       {contextHolder}
@@ -47,7 +43,6 @@ export default function Login() {
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
