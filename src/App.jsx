@@ -9,6 +9,7 @@ import Home from "./views/Home";
 import Login from "./views/Login";
 import ScreensList from "./views/ScreensList";
 import { connect } from "react-redux";
+import CreateScreen from "./views/CreateScreen";
 
 function App({ auth }) {
   console.log(auth);
@@ -36,6 +37,14 @@ function App({ auth }) {
             element={
               <PrivateRoute>
                 <ScreensList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <PrivateRoute>
+                <CreateScreen />
               </PrivateRoute>
             }
           />
