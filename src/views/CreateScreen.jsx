@@ -9,6 +9,7 @@ export default function CreateScreen() {
   const dispatch = useDispatch();
   const [createForm] = Form.useForm();
   const token = useSelector(selectUser);
+  const { loading } = useSelector((state) => state.screens);
 
   const onFinish = (values) => {
     dispatch(create({ data: values, token: token })).then((result) =>
@@ -104,7 +105,7 @@ export default function CreateScreen() {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Submit
           </Button>
         </Form.Item>
