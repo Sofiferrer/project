@@ -68,5 +68,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const selectUser = (state) => state.auth.user.token;
+export const selectUser = (state) => state.auth.user?.token;
 export default authSlice.reducer;
