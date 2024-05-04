@@ -9,11 +9,10 @@ export default function Login() {
   const navigate = useNavigate();
   const [loginForm] = Form.useForm();
   const onFinish = (values) => {
-    console.log("Success:", values);
     dispatch(login(values)).then((result) => {
       if (result.payload) {
         loginForm.resetFields();
-        navigate("/home");
+        navigate("/screens");
       }
     });
   };
