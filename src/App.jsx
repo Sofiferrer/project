@@ -1,18 +1,19 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import "./App.css";
 import Home from "./views/Home";
 import Login from "./views/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/auth/authSlice";
 
 function App() {
-  const screensState = useSelector((state) => state.screens);
-  console.log(screensState);
+  const user = useSelector(selectUser);
+  console.log(user);
+
   return (
     <div className="wrapper">
       <Router>
         <Routes>
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
