@@ -16,10 +16,8 @@ export default function CreateScreen() {
   const createScreen = (values) => {
     dispatch(create({ data: values, token: token })).then((result) => {
       if (typeof result.payload == "string") {
-        console.log(result);
         message.error("Data is missing", 1);
       } else {
-        console.log(result);
         message.success("Created", 1);
         navigate("/screens");
       }
