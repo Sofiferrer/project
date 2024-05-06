@@ -13,14 +13,15 @@ import CreateScreen from "./views/CreateScreen";
 import Detail from "./views/Detail";
 
 function App({ auth }) {
+  console.log(auth);
   const PrivateRoute = ({ children }) => {
     if (auth == undefined) {
-      return <Navigate to={"/login"} />;
+      return <Navigate to={"/latinAd-react/login"} />;
     } else {
       if (auth.token != null && auth.token != undefined) {
         return <>{children}</>;
       } else {
-        return <Navigate to={"/login"} />;
+        return <Navigate to={"/latinAd-react/login"} />;
       }
     }
   };
@@ -29,8 +30,10 @@ function App({ auth }) {
     <div>
       <Router>
         <Routes>
+          <Route exact path="/latinAd-react/" element={<Home />} />
+          <Route path="/latinAd-react/login" element={<Login />} />
           <Route
-            path="/screens"
+            path="/latinAd-react/screens"
             element={
               <PrivateRoute>
                 <ScreensList />
@@ -38,7 +41,7 @@ function App({ auth }) {
             }
           />
           <Route
-            path="/create"
+            path="/latinAd-react/create"
             element={
               <PrivateRoute>
                 <CreateScreen />
@@ -46,15 +49,14 @@ function App({ auth }) {
             }
           />
           <Route
-            path="/screen/:id"
+            path="/latinAd-react/screen/:id"
             element={
               <PrivateRoute>
                 <Detail />
               </PrivateRoute>
             }
           />
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="*" element={<Login />}></Route>
         </Routes>
       </Router>

@@ -19,14 +19,14 @@ export default function CreateScreen() {
         message.error("Data is missing", 1);
       } else {
         message.success("Created", 1);
-        navigate("/screens");
+        navigate("/latinAd-react/screens");
       }
     });
   };
 
   return (
     <>
-      <Link to="/screens">Back to list</Link>
+      <Link to="/latinAd-react/screens">Back to list</Link>
 
       <ScreenForm onSubmit={createScreen}></ScreenForm>
     </>

@@ -24,7 +24,7 @@ export default function Login() {
     dispatch(login(values)).then((result) => {
       if (result.payload.token) {
         loginForm.resetFields();
-        navigate("/screens");
+        navigate("/latinAd-react/screens");
       } else {
         loginForm.resetFields();
         openNotification("Invalid credentials, try again");
