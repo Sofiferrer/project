@@ -1,10 +1,9 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Menu } from "antd";
 import { logout } from "../../features/auth/authSlice";
-import "./Navbar.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import "./Navbar.css";
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,11 +13,15 @@ export default function Navbar() {
   };
 
   return (
-    <div>
-      Navbar
+    <div className="navbar">
+      <h2>LatinAD</h2>
       <Button type="primary" size="large" onClick={logOut}>
         Logout
       </Button>
     </div>
+    // <div>
+    //   Navbar
+
+    // </div>
   );
 }

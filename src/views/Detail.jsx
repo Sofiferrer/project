@@ -8,31 +8,25 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router";
 import ScreenForm from "../components/ScreenForm/ScreenForm";
+import { RollbackOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export default function Detail() {
   const { id } = useParams();
-  const dispatch = useDispatch();
+
   const [screen, setScreen] = useState({});
-  const [initialValues, setInitialValues] = useState({});
-  const [editable, setEditable] = useState(false);
   const token = useSelector(selectUser);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getById({ id: id, token: token })).then((result) => {
-      setInitialValues({
-        name: result.payload.name,
-        description: result.payload.description,
-        price_per_day: result.payload.price_per_day,
-        resolution_height: result.payload.resolution_height,
-        resolution_width: result.payload.resolution_width,
-        type: result.payload.type,
-      });
+      console.log(result.payload);
       setScreen(result.payload);
     });
   }, []);
 
-  const updateScreen = (values) => {
+  const handleUpdate = (values) => {
     dispatch(update({ id: id, data: values, token: token })).then((result) => {
       if (typeof result.payload == "string") {
         message.error("Something went wrong, try again", 1);
@@ -43,7 +37,7 @@ export default function Detail() {
     });
   };
 
-  const confirmDelete = (e) => {
+  const handleDelete = () => {
     dispatch(deleteScreen({ id: id, token: token })).then((result) => {
       if (typeof result.payload == "string") {
         message.error("Something went wrong, try again", 1);
@@ -56,28 +50,40 @@ export default function Detail() {
 
   return (
     <div>
-      <Button
-        type="primary"
-        size="large"
-        onClick={() => setEditable(!editable)}
+      <div
+        style={{
+          width: "60%",
+          margin: "30px auto",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
       >
-        Edit Screen
-      </Button>
-      <Popconfirm
-        title={`Delete ${screen.name}`}
-        description={`Are you sure to delete this screen?`}
-        onConfirm={confirmDelete}
-        okText="Yes"
-        cancelText="No"
-      >
-        <Button danger>Delete</Button>
-      </Popconfirm>
-      <Link to="/latinAd-react/screens">Back to list</Link>
-      <ScreenForm
-        onSubmit={updateScreen}
-        initialValues={initialValues}
-        disabled={!editable}
-      ></ScreenForm>
+        <Link
+          to="/latinAd-react/screens"
+          style={{
+            display: "block",
+            width: "35px",
+            height: "35px",
+            backgroundColor: "#1b8b5d",
+            color: "black",
+          }}
+        >
+          <RollbackOutlined />
+        </Link>
+        <Popconfirm
+          title={`Delete ${screen.name}`}
+          description={`Are you sure to delete this screen?`}
+          onConfirm={handleDelete}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button danger>
+            <DeleteOutlined />
+          </Button>
+        </Popconfirm>
+      </div>
+
+      <ScreenForm onSubmit={handleUpdate} initialValues={screen}></ScreenForm>
     </div>
   );
 }

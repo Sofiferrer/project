@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getAll } from "../features/screens/screenSlice";
+import { deleteScreen, getAll } from "../features/screens/screenSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import Loader from "../components/Loader/Loader";
 import Navbar from "../components/Navbar/Navbar";
 import Paginator from "../components/Paginator/Paginator";
 import Filters from "../components/Filters/Filters";
+import ScreensTable from "../components/ScreensTable/ScreensTable";
+import AddBtn from "../components/AddBtn/AddBtn";
 
 export default function ScreensList() {
   const dispatch = useDispatch();
@@ -99,33 +101,43 @@ export default function ScreensList() {
     });
   };
 
+  const handleDelete = (id) => {
+    dispatch(deleteScreen({ id: id, token: token })).then((result) => {
+      if (typeof result.payload == "string") {
+        message.error("Something went wrong, try again", 1);
+      } else {
+        message.success("Deleted", 1);
+        onReset();
+      }
+    });
+  };
+
   return (
     <>
       <Navbar />
-      <Link to="/latinAd-react/create"> Add Screen</Link>
-      <Filters
-        onSubmit={handleFilters}
-        params={queryParams}
-        reset={reset}
-        loading={loading}
-      ></Filters>
-      <Button htmlType="button" onClick={onReset}>
-        Reset
-      </Button>
+      <div style={{ display: "flex" }}>
+        <Filters
+          onSubmit={handleFilters}
+          params={queryParams}
+          reset={reset}
+          loading={loading}
+        ></Filters>
+        <Button htmlType="button" onClick={onReset}>
+          Reset
+        </Button>
+        <AddBtn></AddBtn>
+      </div>
+
       {loading ? (
         <Loader />
       ) : (
         <main>
           {totalScreens > 0 ? (
-            <ul>
-              {screens?.map((screen) => (
-                <li key={screen.id}>
-                  <Link to={`/latinAd-react/screen/${screen.id}`}>
-                    {screen.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ScreensTable
+              screens={screens}
+              loading={loading}
+              onDelete={handleDelete}
+            ></ScreensTable>
           ) : (
             <p>No screens match the filter</p>
           )}

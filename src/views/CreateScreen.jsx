@@ -26,8 +26,7 @@ export default function CreateScreen() {
 
   return (
     <>
-      <Link to="/latinAd-react/screens">Back to list</Link>
-
+      <h2 style={{ margin: "50px auto" }}>Create a new Screen</h2>
       <ScreenForm onSubmit={createScreen}></ScreenForm>
     </>
   );
