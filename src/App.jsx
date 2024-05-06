@@ -26,7 +26,7 @@ function App({ auth }) {
   };
 
   return (
-    <div className="wrapper">
+    <div>
       <Router>
         <Routes>
           <Route
