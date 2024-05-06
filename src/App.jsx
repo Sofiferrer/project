@@ -27,7 +27,7 @@ function App({ auth }) {
   };
 
   return (
-    <div>
+    <div className="wrapper">
       <Router>
         <Routes>
           <Route exact path="/latinAd-react/" element={<Home />} />
