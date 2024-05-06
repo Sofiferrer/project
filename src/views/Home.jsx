@@ -12,9 +12,9 @@ export default function Home() {
       <h3>Screens</h3>
 
       {token ? (
-        <Link to="/screens">Go to screens</Link>
+        <Link to="/latinAd-react/screens">Go to screens</Link>
       ) : (
-        <Link to="/login">Login to continue</Link>
+        <Link to="/latinAd-react/login">Login to continue</Link>
       )}
     </>
   );

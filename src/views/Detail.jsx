@@ -38,7 +38,7 @@ export default function Detail() {
         message.error("Something went wrong, try again", 1);
       } else {
         message.success("Updated", 1);
-        navigate("/screens");
+        navigate("/latinAd-react/screens");
       }
     });
   };
@@ -49,7 +49,7 @@ export default function Detail() {
         message.error("Something went wrong, try again", 1);
       } else {
         message.success("Deleted", 1);
-        navigate("/screens");
+        navigate("/latinAd-react/screens");
       }
     });
   };
@@ -72,7 +72,7 @@ export default function Detail() {
       >
         <Button danger>Delete</Button>
       </Popconfirm>
-      <Link to="/screens">Back to list</Link>
+      <Link to="/latinAd-react/screens">Back to list</Link>
       <ScreenForm
         onSubmit={updateScreen}
         initialValues={initialValues}

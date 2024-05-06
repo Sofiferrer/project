@@ -10,7 +10,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const logOut = () => {
-    dispatch(logout()).then((result) => navigate("/"));
+    dispatch(logout()).then((result) => navigate("/latinAd-react/"));
   };
 
   return (

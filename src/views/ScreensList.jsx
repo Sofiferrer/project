@@ -102,7 +102,7 @@ export default function ScreensList() {
   return (
     <>
       <Navbar />
-      <Link to="/create"> Add Screen</Link>
+      <Link to="/latinAd-react/create"> Add Screen</Link>
       <Filters
         onSubmit={handleFilters}
         params={queryParams}
@@ -120,7 +120,9 @@ export default function ScreensList() {
             <ul>
               {screens?.map((screen) => (
                 <li key={screen.id}>
-                  <Link to={`/screen/${screen.id}`}>{screen.name}</Link>
+                  <Link to={`/latinAd-react/screen/${screen.id}`}>
+                    {screen.name}
+                  </Link>
                 </li>
               ))}
             </ul>
