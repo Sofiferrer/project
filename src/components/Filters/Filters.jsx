@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Form, Input, Radio, Button } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 export default function Filters({ onSubmit, params, reset, loading }) {
   const [filterForm] = Form.useForm();
@@ -31,21 +32,33 @@ export default function Filters({ onSubmit, params, reset, loading }) {
     <Form
       form={filterForm}
       name="filter-form"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
+      style={{
+        maxWidth: 500,
+        display: "flex",
+        justifyContent: "space-between",
+        margin: "auto 30px",
+      }}
       onFinish={onSubmit}
       autoComplete="off"
       initialValues={{ name: nameInitialValue, type: typeInitialValue }}
     >
-      <Form.Item label="Name" name="name">
-        <Input />
+      <Form.Item name="name" style={{ marginRight: "20px" }}>
+        <Input
+          prefix={<SearchOutlined className="site-form-item-icon" />}
+          placeholder="Filter by name"
+        />
       </Form.Item>
 
-      <Form.Item label="Type" name="type">
-        <Radio.Group>
-          <Radio value="indoor"> Indoor </Radio>
-          <Radio value="outdoor"> Outdoor </Radio>
+      <Form.Item name="type">
+        <Radio.Group style={{ display: "flex" }}>
+          <Radio value="indoor" style={{ color: "beige" }}>
+            {" "}
+            Indoor{" "}
+          </Radio>
+          <Radio value="outdoor" style={{ color: "beige" }}>
+            {" "}
+            Outdoor{" "}
+          </Radio>
         </Radio.Group>
       </Form.Item>
 
