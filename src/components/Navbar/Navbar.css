@@ -1,0 +1,13 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: transparent;
+  margin-bottom: 50px;
+}
+
+.navbar h2 {
+  margin-right: auto;
+  color: bisque;
+  font-size: 2rem;
+}
