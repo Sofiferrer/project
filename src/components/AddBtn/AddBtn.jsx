@@ -7,7 +7,6 @@ import "./AddBtn.css";
 export default function AddBtn() {
   return (
     <Link to="/latinAd-react/create" className="add-btn">
-      {" "}
       <FileAddOutlined />
       New
     </Link>

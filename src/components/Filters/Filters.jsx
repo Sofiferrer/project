@@ -36,20 +36,19 @@ export default function Filters({ onSubmit, params, reset, loading }) {
         maxWidth: 500,
         display: "flex",
         justifyContent: "space-between",
-        margin: "auto 30px",
       }}
       onFinish={onSubmit}
       autoComplete="off"
       initialValues={{ name: nameInitialValue, type: typeInitialValue }}
     >
-      <Form.Item name="name" style={{ marginRight: "20px" }}>
+      <Form.Item name="name" style={{ margin: "0 20px 0 0" }}>
         <Input
           prefix={<SearchOutlined className="site-form-item-icon" />}
           placeholder="Filter by name"
         />
       </Form.Item>
 
-      <Form.Item name="type">
+      <Form.Item name="type" style={{ margin: "0" }}>
         <Radio.Group style={{ display: "flex" }}>
           <Radio value="indoor" style={{ color: "beige" }}>
             {" "}
@@ -62,7 +61,7 @@ export default function Filters({ onSubmit, params, reset, loading }) {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item style={{ margin: "0" }}>
         <Button type="primary" htmlType="submit" loading={loading}>
           Search
         </Button>

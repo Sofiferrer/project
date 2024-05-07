@@ -25,6 +25,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
       title: "Price per day",
       dataIndex: "pricexday",
       key: "pricexday",
+      responsive: ["md"],
       render: (_, screen) => (
         <Space size="middle">
           <span>{`$ ${screen.price_per_day}`}</span>
@@ -35,6 +36,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
       title: "Type",
       dataIndex: "type",
       key: "type",
+      responsive: ["md"],
     },
     {
       title: "Action",
@@ -48,7 +50,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
             okText="Yes"
             cancelText="No"
           >
-            <Button>
+            <Button danger shape="circle" size="small">
               <DeleteOutlined />
             </Button>
           </Popconfirm>
