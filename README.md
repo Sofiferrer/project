@@ -14,8 +14,8 @@ From mobile, completly responsive
 
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/47305ad3-ca0d-4066-be95-64d0b840ec26" width="200" height="auto"/>
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/09d798d8-ed2f-4126-920a-ebedbffe5d34" width="200" height="auto"/>
-<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/3278117c-1372-488f-bad1-0c810e35260e" width="200" height="auto"/>
-<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/66aee502-749d-4f5d-858c-307f133bd374" width="200" height="auto"/>
+<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/97ca19a9-dbb4-44d7-b308-98c626997075" width="200" height="auto"/>
+<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/1a1a8e2f-415f-4016-bfc7-1dc7d5909be7" width="200" height="auto"/>
 
 From desktop
 
