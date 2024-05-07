@@ -62,7 +62,7 @@ export default function Filters({ onSubmit, params, reset, loading }) {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+      <Form.Item>
         <Button type="primary" htmlType="submit" loading={loading}>
           Search
         </Button>
