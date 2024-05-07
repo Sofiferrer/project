@@ -13,7 +13,6 @@ import CreateScreen from "./views/CreateScreen";
 import Detail from "./views/Detail";
 
 function App({ auth }) {
-  console.log(auth);
   const PrivateRoute = ({ children }) => {
     if (auth == undefined) {
       return <Navigate to={"/latinAd-react/login"} />;

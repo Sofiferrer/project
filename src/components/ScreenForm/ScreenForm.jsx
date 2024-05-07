@@ -13,7 +13,6 @@ export default function ScreenForm({ onSubmit, initialValues }) {
 
   useEffect(() => {
     if (initialValues) {
-      console.log(initialValues);
       screenForm.setFieldsValue({
         name: initialValues.name,
         description: initialValues.description,

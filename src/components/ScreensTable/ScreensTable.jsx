@@ -73,13 +73,6 @@ export default function ScreensTable({ onDelete, screens, loading }) {
         tableLayout="fixed"
         pagination={false}
       />
-      {/* <ul>
-        {screens?.map((screen) => (
-          <li key={screen.id}>
-            <Link to={`/latinAd-react/screen/${screen.id}`}>{screen.name}</Link>
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 }
