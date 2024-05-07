@@ -10,9 +10,16 @@ This project is a web application to manage advertising screens. The challenge w
 
 ## Operating flow screenshots
 
+From mobile, completly responsive
+
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/47305ad3-ca0d-4066-be95-64d0b840ec26" width="200" height="auto"/>
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/09d798d8-ed2f-4126-920a-ebedbffe5d34" width="200" height="auto"/>
-<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/494dc536-1aaf-4311-9273-22bf3e85e4b2" width="200" height="auto"/>
+<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/3278117c-1372-488f-bad1-0c810e35260e" width="200" height="auto"/>
+<img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/66aee502-749d-4f5d-858c-307f133bd374" width="200" height="auto"/>
+
+From desktop
+
+![Screenshot from 2024-05-07 13-19-23](https://github.com/Sofiferrer/latinAd-react/assets/65264195/e563f78b-8031-4dca-b1f0-daab2e797b2e)
 
 ## Run Locally
 
