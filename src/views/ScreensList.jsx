@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteScreen, getAll } from "../features/screens/screenSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/auth/authSlice";
-import { Button, message } from "antd";
+import { Button, Space, message } from "antd";
 import Loader from "../components/Loader/Loader";
 import Navbar from "../components/Navbar/Navbar";
 import Paginator from "../components/Paginator/Paginator";
@@ -107,7 +107,7 @@ export default function ScreensList() {
         message.error("Something went wrong, try again", 1);
       } else {
         message.success("Deleted", 1);
-        onReset();
+        fetchData();
       }
     });
   };
@@ -115,7 +115,33 @@ export default function ScreensList() {
   return (
     <>
       <Navbar />
-      <div style={{ display: "flex" }}>
+      {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div>
+          {" "}
+          <Filters
+            onSubmit={handleFilters}
+            params={queryParams}
+            reset={reset}
+            loading={loading}
+          ></Filters>
+        </div>
+
+        <div
+          style={{
+            width: "250px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "start",
+          }}
+        >
+          {" "}
+          <Button htmlType="button" onClick={onReset}>
+            Reset
+          </Button>
+          <AddBtn></AddBtn>
+        </div>
+      </div> */}
+      <Space align="start" direction="horizontal" wrap={true} size={"middle"}>
         <Filters
           onSubmit={handleFilters}
           params={queryParams}
@@ -126,12 +152,12 @@ export default function ScreensList() {
           Reset
         </Button>
         <AddBtn></AddBtn>
-      </div>
+      </Space>
 
       {loading ? (
         <Loader />
       ) : (
-        <main>
+        <main style={{ marginTop: "20px" }}>
           {totalScreens > 0 ? (
             <ScreensTable
               screens={screens}

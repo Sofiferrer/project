@@ -129,7 +129,7 @@ export default function ScreenForm({ onSubmit, initialValues }) {
             <img
               alt="screen picture"
               src={`${initialValues.picture_url}`}
-              style={{ width: "auto", height: "25vh" }}
+              style={{ width: "90%", height: "auto" }}
             />
           </div>
         ) : (
