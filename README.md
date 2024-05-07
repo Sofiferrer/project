@@ -54,7 +54,9 @@ You can see the site deployment [here](https://sofiferrer.github.io/latinAd-reac
 ## Known Issues / Work in progress
 
 The aesthetic part can and will be improved. In the given time, I focused my attention on the correct functioning and technical implementation of the programming language, the framework and the libraries used. I hope to achieve that wow effect with my code.
+
 The API is private, so the next step is to connect this app to libraries like JWT and Firebase so that it is open to public testing.
+
 In the mid term I will develop the backend myself as part of my training in backend development with Node.js currently underway at Ada ITW.
 
 ## Feedback
