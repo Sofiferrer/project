@@ -10,7 +10,7 @@ This project is a web application to manage advertising screens. The challenge w
 
 ## Operating flow screenshots
 
-From mobile, completly responsive
+From mobile, completely responsive
 
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/47305ad3-ca0d-4066-be95-64d0b840ec26" width="200" height="auto"/>
 <img src="https://github.com/Sofiferrer/latinAd-react/assets/65264195/09d798d8-ed2f-4126-920a-ebedbffe5d34" width="200" height="auto"/>
