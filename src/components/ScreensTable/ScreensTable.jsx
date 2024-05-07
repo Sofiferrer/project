@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Space, Table, Button, Popconfirm } from "antd";
+import { Space, Table, Button, Popconfirm, Empty } from "antd";
 import { EyeOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import "./ScreensTable.css";
 
@@ -17,7 +17,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
       key: "resolution",
       render: (_, screen) => (
         <Space size="middle">
-          <span>{`${screen.resolution_height} x ${screen.resolution_width}`}</span>
+          <span>{`${screen.resolution_height} x ${screen.resolution_width} px`}</span>
         </Space>
       ),
     },
@@ -74,6 +74,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
         sticky={true}
         tableLayout="fixed"
         pagination={false}
+        locale={{ emptyText: <Empty /> }}
       />
     </>
   );

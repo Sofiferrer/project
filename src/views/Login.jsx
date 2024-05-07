@@ -22,7 +22,11 @@ export default function Login() {
   };
 
   const handleLogin = (values) => {
-    dispatch(login(values)).then((result) => {
+    const data = {
+      email: values.email.toLowerCase(),
+      password: values.password,
+    };
+    dispatch(login(data)).then((result) => {
       if (result.payload.token) {
         setReset(true);
         navigate("/latinAd-react/screens");

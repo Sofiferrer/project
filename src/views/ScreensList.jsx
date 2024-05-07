@@ -115,32 +115,6 @@ export default function ScreensList() {
   return (
     <>
       <Navbar />
-      {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <div>
-          {" "}
-          <Filters
-            onSubmit={handleFilters}
-            params={queryParams}
-            reset={reset}
-            loading={loading}
-          ></Filters>
-        </div>
-
-        <div
-          style={{
-            width: "250px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "start",
-          }}
-        >
-          {" "}
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
-          <AddBtn></AddBtn>
-        </div>
-      </div> */}
       <Space align="start" direction="horizontal" wrap={true} size={"middle"}>
         <Filters
           onSubmit={handleFilters}
@@ -158,15 +132,11 @@ export default function ScreensList() {
         <Loader />
       ) : (
         <main style={{ marginTop: "20px" }}>
-          {totalScreens > 0 ? (
-            <ScreensTable
-              screens={screens}
-              loading={loading}
-              onDelete={handleDelete}
-            ></ScreensTable>
-          ) : (
-            <p>No screens match the filter</p>
-          )}
+          <ScreensTable
+            screens={screens}
+            loading={loading}
+            onDelete={handleDelete}
+          ></ScreensTable>
           <p style={{ width: "100%", textAlign: "left" }}>
             Total screens: {totalScreens}
           </p>
