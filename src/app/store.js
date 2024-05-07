@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import screensReducer from "../features/screens/screenSlice";
-import authReducer from "../features/auth/authSlice";
+import screensReducer from "../redux/screens/screenSlice";
+import authReducer from "../redux/auth/authSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";

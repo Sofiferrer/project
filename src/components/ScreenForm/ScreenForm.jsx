@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Button, Form, Input, InputNumber, Radio, Upload } from "antd";
+import { Button, Flex, Form, Input, InputNumber, Radio, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-
-import "./ScreenForm.css";
+import LoadingImg from "../../assets/image/loadingImg.jpg";
 
 export default function ScreenForm({ onSubmit, initialValues }) {
+  //Formulario de creacion y edicion de pantallas, recibe por props la callback y los valores iniciales en caso de ser una pantalla a editar
   const [screenForm] = Form.useForm();
   const { loading } = useSelector((state) => state.screens);
   const navigate = useNavigate();
 
+  //En caso de haber valores iniciales se setean en el formulario
   useEffect(() => {
     if (initialValues) {
       screenForm.setFieldsValue({
@@ -59,9 +60,9 @@ export default function ScreenForm({ onSubmit, initialValues }) {
       >
         <Input.TextArea />
       </Form.Item>
-      <div style={{ display: "flex" }}>
+      <Flex align="center">
         <div style={{ width: "60%" }}>
-          <div className="input-group">
+          <Flex align="center" justify="space-between">
             <Form.Item
               label="Type"
               name="type"
@@ -89,8 +90,8 @@ export default function ScreenForm({ onSubmit, initialValues }) {
             >
               <InputNumber />
             </Form.Item>
-          </div>
-          <div className="input-group">
+          </Flex>
+          <Flex align="center" justify="space-between">
             <Form.Item
               label="Heigh"
               name="resolution_height"
@@ -116,29 +117,42 @@ export default function ScreenForm({ onSubmit, initialValues }) {
             >
               <InputNumber />
             </Form.Item>
-          </div>
+          </Flex>
         </div>
         {initialValues ? (
-          <div
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "end",
-            }}
-          >
-            <img
-              alt="screen picture"
-              src={`${initialValues.picture_url}`}
-              style={{ width: "90%", height: "auto" }}
-            />
-          </div>
+          loading ? (
+            <Flex
+              justify="end"
+              style={{
+                width: "40%",
+              }}
+            >
+              <img
+                alt="loading picture"
+                src={LoadingImg}
+                style={{ width: "90%", height: "auto" }}
+              />
+            </Flex>
+          ) : (
+            <Flex
+              justify="end"
+              style={{
+                width: "40%",
+              }}
+            >
+              <img
+                alt="screen picture"
+                src={`${initialValues.picture_url}`}
+                style={{ width: "90%", height: "auto" }}
+              />
+            </Flex>
+          )
         ) : (
-          <div
+          <Flex
+            align="center"
+            justify="end"
             style={{
               width: "40%",
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "center",
             }}
           >
             <Form.Item label="Picture" disabled>
@@ -152,9 +166,9 @@ export default function ScreenForm({ onSubmit, initialValues }) {
                 <UploadOutlined />
               </Upload>
             </Form.Item>
-          </div>
+          </Flex>
         )}
-      </div>
+      </Flex>
       <Form.Item style={{ marginTop: "30px" }}>
         <Button
           size="large"

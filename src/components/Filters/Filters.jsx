@@ -3,6 +3,8 @@ import { Form, Input, Radio, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 export default function Filters({ onSubmit, params, reset, loading }) {
+  //  Comonente filtros recibe por prop la callback a ejecutar, la url como 'params', un reset flag para limpiar el formulario y el loading del state
+
   const [filterForm] = Form.useForm();
   const typeInitialValue = params.get("type").toString();
   const nameInitialValue = params.get("name").toString();
@@ -14,6 +16,7 @@ export default function Filters({ onSubmit, params, reset, loading }) {
     });
   }, []);
 
+  // Cuando el valor de reset cambia se ejecuta la funcion resetForm, pero solo resetea el formulario si el valor es true
   useEffect(() => {
     resetForm();
   }, [reset]);

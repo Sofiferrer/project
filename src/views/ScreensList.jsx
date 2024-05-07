@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deleteScreen, getAll } from "../features/screens/screenSlice";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Space, message } from "antd";
+import { deleteScreen, getAll } from "../redux/screens/screenSlice";
+import { selectUser } from "../redux/auth/authSlice";
 import Loader from "../components/Loader/Loader";
 import Navbar from "../components/Navbar/Navbar";
 import Paginator from "../components/Paginator/Paginator";
@@ -13,6 +12,9 @@ import ScreensTable from "../components/ScreensTable/ScreensTable";
 import AddBtn from "../components/AddBtn/AddBtn";
 
 export default function ScreensList() {
+  //La vista de lista de pantallas toma el token del auth store y dispara el getAll, dentro de la funcion fetchData que primero convierte los parametros de busqueda a un string y luego los pasa como argumento a getAll.
+  // fetchData esta dentro de un useEffect que se ejecuta cada vez que cambian los parametros de filtrado y paginacion.
+
   const dispatch = useDispatch();
 
   const token = useSelector(selectUser);

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { notification } from "antd";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
+import { login } from "../redux/auth/authSlice";
 import LoginForm from "../components/LoginForm/LoginForm";
 
 export default function Login() {

@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Menu } from "antd";
-import { logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./Navbar.css";
+import { Button, Flex } from "antd";
+import { logout } from "../../redux/auth/authSlice";
+
 export default function Navbar() {
+  //Navbar ejecuta el logout
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -13,15 +14,11 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar">
-      <h2>LatinAD</h2>
+    <Flex align="center" justify="space-between">
+      <h1>LatinAD</h1>
       <Button type="primary" size="large" onClick={logOut}>
         Logout
       </Button>
-    </div>
-    // <div>
-    //   Navbar
-
-    // </div>
+    </Flex>
   );
 }

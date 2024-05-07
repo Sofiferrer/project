@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deleteScreen, getById } from "../features/screens/screenSlice";
-import { Button, Popconfirm, message } from "antd";
-import { update } from "../features/screens/screenSlice";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router";
-import ScreenForm from "../components/ScreenForm/ScreenForm";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Flex, Popconfirm, message } from "antd";
 import { RollbackOutlined, DeleteOutlined } from "@ant-design/icons";
+import { deleteScreen, getById, update } from "../redux/screens/screenSlice";
+import { selectUser } from "../redux/auth/authSlice";
+import ScreenForm from "../components/ScreenForm/ScreenForm";
 
 export default function Detail() {
+  //La vista toma el id de la url y el token del auth store y dispara la funcion getById, luego contiene funciones de update y delete
   const { id } = useParams();
 
-  const [screen, setScreen] = useState({});
   const token = useSelector(selectUser);
+  const [screen, setScreen] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,13 +47,12 @@ export default function Detail() {
   };
 
   return (
-    <div>
-      <div
+    <>
+      <Flex
+        justify="space-between"
         style={{
           width: "60%",
           margin: "30px auto",
-          display: "flex",
-          justifyContent: "space-between",
         }}
       >
         <Link
@@ -80,9 +78,9 @@ export default function Detail() {
             <DeleteOutlined />
           </Button>
         </Popconfirm>
-      </div>
+      </Flex>
 
       <ScreenForm onSubmit={handleUpdate} initialValues={screen}></ScreenForm>
-    </div>
+    </>
   );
 }

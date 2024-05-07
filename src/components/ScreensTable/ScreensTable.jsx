@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Space, Table, Button, Popconfirm, Empty } from "antd";
 import { EyeOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import "./ScreensTable.css";
 
 export default function ScreensTable({ onDelete, screens, loading }) {
+  //La tabla recibe como props la callback para eliminar elementos, la lista de pantallas y el loading del store y renderiza las columnas y data proporcionadas, la logica la resuelve la vista padre.
+
   const columns = [
     {
       title: "Name",
@@ -15,6 +16,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
       title: "Resolution",
       dataIndex: "resolution",
       key: "resolution",
+      responsive: ["md"],
       render: (_, screen) => (
         <Space size="middle">
           <span>{`${screen.resolution_height} x ${screen.resolution_width} px`}</span>
@@ -36,7 +38,6 @@ export default function ScreensTable({ onDelete, screens, loading }) {
       title: "Type",
       dataIndex: "type",
       key: "type",
-      responsive: ["md"],
     },
     {
       title: "Action",

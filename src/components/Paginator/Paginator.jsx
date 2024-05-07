@@ -1,6 +1,5 @@
 import React from "react";
 import { Pagination } from "antd";
-import "./Paginator.css";
 
 export default function Paginator({ onSubmit, page, pageSize, totalScreens }) {
   return (

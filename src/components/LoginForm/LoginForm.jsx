@@ -3,6 +3,7 @@ import { Button, Form, Input } from "antd";
 import "./LoginForm.css";
 
 export default function LoginForm({ onSubmit, loading, reset }) {
+  //Similar al formulario de filtros, el de login recibe como props la callback, el loading del state y la reset flag
   const [loginForm] = Form.useForm();
 
   useEffect(() => {

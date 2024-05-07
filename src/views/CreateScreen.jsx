@@ -1,14 +1,13 @@
 import React from "react";
-import { message } from "antd";
-import { useDispatch } from "react-redux";
-import { create } from "../features/screens/screenSlice";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { create } from "../redux/screens/screenSlice";
+import { selectUser } from "../redux/auth/authSlice";
+import { message } from "antd";
 import ScreenForm from "../components/ScreenForm/ScreenForm";
 
 export default function CreateScreen() {
+  //La vista toma el token del estado del usuario en auth y lo pasa como argumento a la funcion de create
   const dispatch = useDispatch();
   const token = useSelector(selectUser);
   const navigate = useNavigate();

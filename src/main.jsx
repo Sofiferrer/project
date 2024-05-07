@@ -16,7 +16,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       theme={{
         algorithm: theme.darkAlgorithm,
         token: {
-          // Seed Token
           colorPrimary: "#00b96b",
           borderRadius: 3,
         },
