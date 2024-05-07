@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
@@ -10,6 +10,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.auth);
+  const [reset, setReset] = useState(false);
 
   const openNotification = (message) => {
     api.info({
@@ -23,10 +24,10 @@ export default function Login() {
   const handleLogin = (values) => {
     dispatch(login(values)).then((result) => {
       if (result.payload.token) {
-        loginForm.resetFields();
+        setReset(true);
         navigate("/latinAd-react/screens");
       } else {
-        loginForm.resetFields();
+        setReset(true);
         openNotification("Invalid credentials, try again");
       }
     });
@@ -36,7 +37,11 @@ export default function Login() {
     <>
       {contextHolder}
       <h2>Login</h2>
-      <LoginForm onSubmit={handleLogin} loading={loading}></LoginForm>
+      <LoginForm
+        onSubmit={handleLogin}
+        loading={loading}
+        reset={reset}
+      ></LoginForm>
     </>
   );
 }

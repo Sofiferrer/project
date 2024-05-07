@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form, Input } from "antd";
 import "./LoginForm.css";
 
-export default function LoginForm({ onSubmit, loading }) {
+export default function LoginForm({ onSubmit, loading, reset }) {
   const [loginForm] = Form.useForm();
+
+  useEffect(() => {
+    resetForm();
+  }, [reset]);
+
+  const resetForm = () => {
+    if (reset) {
+      loginForm.resetFields();
+      loginForm.setFieldsValue({
+        email: "",
+        password: "",
+      });
+    }
+  };
 
   return (
     <Form

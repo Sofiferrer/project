@@ -141,13 +141,15 @@ export default function ScreensList() {
           ) : (
             <p>No screens match the filter</p>
           )}
+          <p style={{ width: "100%", textAlign: "left" }}>
+            Total screens: {totalScreens}
+          </p>
           <Paginator
             onSubmit={handlePageChange}
             page={page}
             pageSize={pageSize}
             totalScreens={totalScreens}
           ></Paginator>
-          <span>{totalScreens}</span>
         </main>
       )}
     </>

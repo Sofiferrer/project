@@ -21,7 +21,6 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getById({ id: id, token: token })).then((result) => {
-      console.log(result.payload);
       setScreen(result.payload);
     });
   }, []);
