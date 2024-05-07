@@ -61,6 +61,6 @@ In the mid term I will develop the backend myself as part of my training in back
 
 ## Feedback
 
-If you have any feedback, please reach out to me at ferrersofia.g@gmail.com
+If you have any feedback, please reach out to me at ferrersofia.f@gmail.com
 
 Contact me on [linkedin](https://www.linkedin.com/in/sofia-ferrer-038575187/)
