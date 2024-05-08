@@ -18,7 +18,7 @@ export default function CreateScreen() {
         message.error("Data is missing", 1);
       } else {
         message.success("Created", 1);
-        navigate("/latinAd-react/screens");
+        navigate("/project/screens");
       }
     });
   };

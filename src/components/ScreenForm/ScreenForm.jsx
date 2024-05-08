@@ -175,7 +175,7 @@ export default function ScreenForm({ onSubmit, initialValues }) {
           type="secondary"
           htmlType="button"
           loading={loading}
-          onClick={() => navigate("/latinAd-react/screens")}
+          onClick={() => navigate("/project/screens")}
         >
           Cancel
         </Button>

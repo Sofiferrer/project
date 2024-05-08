@@ -5,7 +5,7 @@ import { FileAddOutlined } from "@ant-design/icons";
 export default function AddBtn() {
   return (
     <Link
-      to="/latinAd-react/create"
+      to="/project/create"
       className="add-btn"
       style={{
         height: "25px",

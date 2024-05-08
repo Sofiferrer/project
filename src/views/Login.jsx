@@ -29,7 +29,7 @@ export default function Login() {
     dispatch(login(data)).then((result) => {
       if (result.payload.token) {
         setReset(true);
-        navigate("/latinAd-react/screens");
+        navigate("/project/screens");
       } else {
         setReset(true);
         openNotification("Invalid credentials, try again");

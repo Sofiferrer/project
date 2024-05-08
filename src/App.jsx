@@ -15,12 +15,12 @@ import Detail from "./views/Detail";
 function App({ auth }) {
   const PrivateRoute = ({ children }) => {
     if (auth == undefined) {
-      return <Navigate to={"/latinAd-react/login"} />;
+      return <Navigate to={"/project/login"} />;
     } else {
       if (auth.token != null && auth.token != undefined) {
         return <>{children}</>;
       } else {
-        return <Navigate to={"/latinAd-react/login"} />;
+        return <Navigate to={"/project/login"} />;
       }
     }
   };
@@ -29,10 +29,10 @@ function App({ auth }) {
     <div className="wrapper">
       <Router>
         <Routes>
-          <Route exact path="/latinAd-react/" element={<Home />} />
-          <Route path="/latinAd-react/login" element={<Login />} />
+          <Route exact path="/project/" element={<Home />} />
+          <Route path="/project/login" element={<Login />} />
           <Route
-            path="/latinAd-react/screens"
+            path="/project/screens"
             element={
               <PrivateRoute>
                 <ScreensList />
@@ -40,7 +40,7 @@ function App({ auth }) {
             }
           />
           <Route
-            path="/latinAd-react/create"
+            path="/project/create"
             element={
               <PrivateRoute>
                 <CreateScreen />
@@ -48,7 +48,7 @@ function App({ auth }) {
             }
           />
           <Route
-            path="/latinAd-react/screen/:id"
+            path="/project/screen/:id"
             element={
               <PrivateRoute>
                 <Detail />

@@ -56,7 +56,7 @@ export default function ScreensTable({ onDelete, screens, loading }) {
             </Button>
           </Popconfirm>
 
-          <Link to={`/latinAd-react/screen/${screen.id}`}>
+          <Link to={`/project/screen/${screen.id}`}>
             <EyeOutlined /> / <EditOutlined />
           </Link>
         </Space>

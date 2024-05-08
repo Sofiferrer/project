@@ -30,7 +30,7 @@ export default function Detail() {
         message.error("Something went wrong, try again", 1);
       } else {
         message.success("Updated", 1);
-        navigate("/latinAd-react/screens");
+        navigate("/project/screens");
       }
     });
   };
@@ -41,7 +41,7 @@ export default function Detail() {
         message.error("Something went wrong, try again", 1);
       } else {
         message.success("Deleted", 1);
-        navigate("/latinAd-react/screens");
+        navigate("/project/screens");
       }
     });
   };
@@ -56,7 +56,7 @@ export default function Detail() {
         }}
       >
         <Link
-          to="/latinAd-react/screens"
+          to="/project/screens"
           style={{
             display: "block",
             width: "35px",
